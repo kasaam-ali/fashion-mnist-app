@@ -27,7 +27,7 @@ app.add_middleware(
 def train_and_save_model(model_path: Path):
     (x_train, y_train), (x_test, y_test) = keras.datasets.fashion_mnist.load_data()
     
-    # CNN ke liye (28, 28, 1) mein reshape kiya
+    
     x_train = x_train.reshape(-1, 28, 28, 1).astype('float32') / 255.0
     x_test = x_test.reshape(-1, 28, 28, 1).astype('float32') / 255.0
     
@@ -49,7 +49,7 @@ def train_and_save_model(model_path: Path):
         metrics=['accuracy']
     )
     
-    # Epochs 3 se badha kar 10 kar diye
+   
     model.fit(x_train, y_train, epochs=10, batch_size=64, validation_data=(x_test, y_test))
     model.save(model_path)
     return model
